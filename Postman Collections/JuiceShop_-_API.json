@@ -1,0 +1,68 @@
+{
+	"info": {
+		"_postman_id": "e16aaa6e-5fa1-4e64-b020-a9992657b7c4",
+		"name": "JuiceShop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "VerifyCardDetails",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "36aeb629-851e-40f9-81fd-444196325f77",
+						"exec": [
+							"pm.test(\"Status is 200\", function (){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check card is unique\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    if (jsonData.data && Array.isArray(jsonData.data)) {\r",
+							"        let cardSet=new Set();\r",
+							"        jsonData.data.forEach(function(data) {\r",
+							"            if(cardSet.has(data.cardNum)){\r",
+							"                console.error(\"Duplicate card found: \", data.cardNum)\r",
+							"            }else{\r",
+							"                cardSet.add(data.cardNum);\r",
+							"            }\r",
+							"            \r",
+							"        });\r",
+							"    }\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "f3678d50-c206-44fd-b8a5-d9299655c185",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdGF0dXMiOiJzdWNjZXNzIiwiZGF0YSI6eyJpZCI6MjIsInVzZXJuYW1lIjoiIiwiZW1haWwiOiJhYmNAZ21haWwuY29tIiwicGFzc3dvcmQiOiJmOTI1OTE2ZTI3NTRlNWUwM2Y3NWRkNThhNTczMzI1MSIsInJvbGUiOiJjdXN0b21lciIsImRlbHV4ZVRva2VuIjoiIiwibGFzdExvZ2luSXAiOiJ1bmRlZmluZWQiLCJwcm9maWxlSW1hZ2UiOiIvYXNzZXRzL3B1YmxpYy9pbWFnZXMvdXBsb2Fkcy9kZWZhdWx0LnN2ZyIsInRvdHBTZWNyZXQiOiIiLCJpc0FjdGl2ZSI6dHJ1ZSwiY3JlYXRlZEF0IjoiMjAyNC0wNy0xMiAwMDo1OTo0MC41NTggKzAwOjAwIiwidXBkYXRlZEF0IjoiMjAyNC0wNy0xMiAwMjo1OTo0My44ODcgKzAwOjAwIiwiZGVsZXRlZEF0IjpudWxsfSwiaWF0IjoxNzIwNzUzMTk3fQ.OP7pw-l3o3CHc6wmtwxR52UPs6UHMdPxaIKeOEOV2xiYlQyZ1YB7j4Fty2pkyFC9tKt7mCXWgnW7edQviX0NhL4O2tOUC9qBGMdE-HkxXB7s9uedxoTAfR6uQSCXMa1Fq3AB1UdniiK0EOz3nWjzFoMCnKmqm-saEUMeaU4fLLg"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/api/Cards"
+			},
+			"response": []
+		}
+	]
+}
