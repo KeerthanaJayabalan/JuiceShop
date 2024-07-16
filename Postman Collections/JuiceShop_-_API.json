@@ -63,6 +63,18 @@
 				"url": "http://localhost:3000/api/Cards"
 			},
 			"response": []
+		},
+		{
+			"name": "Add Unique Card Details",
+			"id": "fb95681b-b945-4fe0-af78-391c314efe0b",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
 		}
 	]
 }
